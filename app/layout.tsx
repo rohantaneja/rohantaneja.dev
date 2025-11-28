@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rohan Taneja - Personal Portfolio",
-  description: "Personal portfolio website of Rohan Taneja",
+  title: "rohantaneja.dev",
+  description: "Rohan Taneja - CTO/Founding Engineer @ mesolab.ai",
   icons: {
     icon: [
       {

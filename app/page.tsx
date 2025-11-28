@@ -54,6 +54,20 @@ export default function Home() {
     }
   }, [isLoading]);
 
+  // Scrolling title effect
+  useEffect(() => {
+    const title = "rohantaneja - cto/founding-engineer@mesolab.ai | minimalist.geek.tinkerer - ";
+    let position = 0;
+
+    const scrollTitle = () => {
+      document.title = title.substring(position) + title.substring(0, position);
+      position = (position + 1) % title.length;
+    };
+
+    const interval = setInterval(scrollTitle, 200);
+    return () => clearInterval(interval);
+  }, []);
+
   const toggleTheme = () => {
     setIsDark(!isDark);
   };
