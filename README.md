@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img alt="Logo" src="https://avatars2.githubusercontent.com/u/7235275?s=320" width="100" />
+</div>
+<h1 align="center">
+  rohantaneja.dev
+</h1>
+<p align="center">
+  Personal portfolio website built with <a href="https://nextjs.org/" target="_blank">Next.js</a> and <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
+</p>
 
-## Getting Started
+## Installation & Set Up
 
-First, run the development server:
+1. Install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```sh
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Start the development server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```sh
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Building and Running for Production
 
-## Learn More
+1. Generate a full static production build
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   npm run build
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Preview the site as it will appear once deployed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```sh
+   npm run start
+   ```
 
-## Deploy on Vercel
+## Color Reference
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Usage     | Dark Mode                                                              | Light Mode                                                             |
+| --------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Background| ![#121212](https://placehold.co/10x10/121212/121212.png) `#121212`      | ![#fafaf9](https://placehold.co/10x10/fafaf9/fafaf9.png) `#fafaf9`      |
+| Surface 1 | ![#181818](https://placehold.co/10x10/181818/181818.png) `#181818`      | ![#f5f5f4](https://placehold.co/10x10/f5f5f4/f5f5f4.png) `#f5f5f4`      |
+| Surface 2 | ![#1f1f1f](https://placehold.co/10x10/1f1f1f/1f1f1f.png) `#1f1f1f`      | ![#e7e5e4](https://placehold.co/10x10/e7e5e4/e7e5e4.png) `#e7e5e4`      |
+| Surface 3 | ![#2a2a2a](https://placehold.co/10x10/2a2a2a/2a2a2a.png) `#2a2a2a`      | ![#ffffff](https://placehold.co/10x10/ffffff/ffffff.png) `#ffffff`      |
+| Text      | ![#a8b2d1](https://placehold.co/10x10/a8b2d1/a8b2d1.png) `#a8b2d1`      | ![#57534e](https://placehold.co/10x10/57534e/57534e.png) `#57534e`      |
+| Headings  | ![#e6f1ff](https://placehold.co/10x10/e6f1ff/e6f1ff.png) `#e6f1ff`      | ![#1c1917](https://placehold.co/10x10/1c1917/1c1917.png) `#1c1917`      |
+| Accent    | ![#00B0FF](https://placehold.co/10x10/00B0FF/00B0FF.png) `#00B0FF`      | ![#2563eb](https://placehold.co/10x10/2563eb/2563eb.png) `#2563eb`      |
+| Accent 2  | ![#40C4FF](https://placehold.co/10x10/40C4FF/40C4FF.png) `#40C4FF`      | ![#3b82f6](https://placehold.co/10x10/3b82f6/3b82f6.png) `#3b82f6`      |
