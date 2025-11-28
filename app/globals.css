@@ -223,6 +223,91 @@ body.hidden {
   opacity: 0;
 }
 
+/* Loader - Critical CSS (must be in globals to prevent flash) */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--onyx);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow: hidden;
+}
+
+.loader-container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background-color: var(--onyx);
+  z-index: -1;
+}
+
+.loader-container.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  width: 100px;
+  max-width: 100px;
+  color: var(--orange-yellow-crayola);
+}
+
+.loader-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  fill: none;
+}
+
+.logo-circle {
+  stroke: var(--orange-yellow-crayola);
+  stroke-dasharray: 265;
+  stroke-dashoffset: 265;
+  animation: drawCircle 1.5s ease-in-out forwards;
+}
+
+.logo-text {
+  opacity: 0;
+  animation: fadeInText 0.7s ease-in-out 1.5s forwards;
+}
+
+#logo {
+  animation: scaleOut 0.3s ease-in-out 2.5s forwards;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  to {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+body.loading {
+  overflow: hidden !important;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   position: fixed;
@@ -377,10 +462,10 @@ body.hidden {
 /* SIDEBAR */
 .sidebar {
   background: var(--eerie-black-2);
-  border: 1px solid var(--jet);
+  border: 1px solid var(--eerie-black-1);
   border-radius: 20px;
   padding: 15px 20px;
-  box-shadow: var(--shadow-1);
+  box-shadow: none;
   z-index: 1;
   margin-bottom: 15px;
   max-height: 112px;
@@ -555,10 +640,10 @@ body.hidden {
 /* ARTICLES */
 article {
   background: var(--eerie-black-2);
-  border: 1px solid var(--jet);
+  border: 1px solid var(--eerie-black-1);
   border-radius: 20px;
   padding: 15px;
-  box-shadow: var(--shadow-1);
+  box-shadow: none;
   z-index: 1;
   animation: fade 0.5s ease backwards;
 }
@@ -1429,7 +1514,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar, article {
     width: 950px;
-    box-shadow: var(--shadow-5);
+    box-shadow: none;
   }
 
   .main {

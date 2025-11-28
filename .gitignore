@@ -42,4 +42,3 @@ next-env.d.ts
 
 # personal files
 *.pdf
-.env*.local

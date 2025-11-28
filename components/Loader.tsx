@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 interface LoaderProps {
   finishLoading: () => void;
-  isDark?: boolean;
 }
 
 const IconLoader = () => (
@@ -35,15 +34,8 @@ const IconLoader = () => (
   </svg>
 );
 
-export default function Loader({ finishLoading, isDark = true }: LoaderProps) {
+export default function Loader({ finishLoading }: LoaderProps) {
   const [fadeOut, setFadeOut] = useState(false);
-
-  // Colors based on theme
-  // Dark: cyan logo on dark background
-  // Light: blue logo on warm stone background (easy on eyes, matches Linear/Notion style)
-  const bgColor = isDark ? "#1f1f1f" : "#fafaf9";
-  const logoColor = isDark ? "#00B0FF" : "#2563eb";
-  const circleColor = isDark ? "#00B0FF" : "#a8a29e";
 
   useEffect(() => {
     // After animation completes (3s), trigger fade out
@@ -67,92 +59,6 @@ export default function Loader({ finishLoading, isDark = true }: LoaderProps) {
       <div className="loader-logo">
         <IconLoader />
       </div>
-
-      <style jsx global>{`
-        .loader-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${bgColor};
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          top: 0;
-          left: 0;
-          z-index: 9999;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-          overflow: hidden;
-        }
-
-        .loader-container::before {
-          content: "";
-          position: absolute;
-          top: -10px;
-          left: -10px;
-          right: -10px;
-          bottom: -10px;
-          background-color: ${bgColor};
-          z-index: -1;
-        }
-
-        .loader-container.fade-out {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .loader-logo {
-          width: 100px;
-          max-width: 100px;
-          color: ${logoColor};
-        }
-
-        .loader-logo svg {
-          width: 100%;
-          height: 100%;
-          display: block;
-          margin: 0 auto;
-          fill: none;
-        }
-
-        .logo-circle {
-          stroke: ${circleColor};
-          stroke-dasharray: 265;
-          stroke-dashoffset: 265;
-          animation: drawCircle 1.5s ease-in-out forwards;
-        }
-
-        .logo-text {
-          opacity: 0;
-          animation: fadeInText 0.7s ease-in-out 1.5s forwards;
-        }
-
-        #logo {
-          animation: scaleOut 0.3s ease-in-out 2.5s forwards;
-        }
-
-        @keyframes drawCircle {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        @keyframes fadeInText {
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes scaleOut {
-          to {
-            transform: scale(0.1);
-            opacity: 0;
-          }
-        }
-
-        body.loading {
-          overflow: hidden !important;
-        }
-      `}</style>
     </div>
   );
 }
