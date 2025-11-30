@@ -80,7 +80,7 @@ export default function Home() {
         <Sidebar />
 
         <div className="main-content">
-          <Navbar activePage={activePage} onPageChange={setActivePage} />
+          <Navbar activePage={activePage} onPageChange={setActivePage} isDark={isDark} onThemeToggle={toggleTheme} />
           <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
           {activePage === "about" && <About />}

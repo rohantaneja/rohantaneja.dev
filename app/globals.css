@@ -334,6 +334,32 @@ body.loading {
   color: var(--smoky-black);
 }
 
+/* Hide floating theme toggle on mobile (below 580px) */
+@media (max-width: 579px) {
+  .theme-toggle {
+    display: none;
+  }
+}
+
+/* Mobile theme toggle in navbar */
+.theme-toggle-mobile {
+  display: block;
+}
+
+.theme-toggle-mobile .theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* Hide navbar theme toggle on larger screens (580px+) */
+@media (min-width: 580px) {
+  .theme-toggle-mobile {
+    display: none;
+  }
+}
+
 /* Scrollbar */
 .has-scrollbar::-webkit-scrollbar {
   width: 5px;
