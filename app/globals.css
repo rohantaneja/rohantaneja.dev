@@ -1,6 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-poppins), sans-serif;
+
+  --color-jet: #2a2a2a;
+  --color-onyx: #1f1f1f;
+  --color-eerie-black-1: #181818;
+  --color-eerie-black-2: #151515;
+  --color-smoky-black: #121212;
+  --color-white-1: #e6f1ff;
+  --color-white-2: #ccd6f6;
+  --color-orange-yellow-crayola: #00b0ff;
+  --color-vegas-gold: #40c4ff;
+  --color-light-gray: #a8b2d1;
+  --color-light-gray-70: rgba(168, 178, 209, 0.7);
+  --color-bittersweet-shimmer: #ff6b6b;
+  --color-accent: #00b0ff;
+  --color-accent-light: #40c4ff;
+  --color-slate: #8892b0;
+  --color-light-slate: #a8b2d1;
+  --color-lightest-slate: #ccd6f6;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
   /* gradient - cyan/blue accent theme */
@@ -467,6 +505,60 @@ body.loading {
   border-radius: 3px;
 }
 
+/* Resume header + Download CV button */
+.resume-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.resume-header .article-title { margin-bottom: 0; }
+
+.download-cv-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--border-gradient-onyx);
+  color: var(--orange-yellow-crayola);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: var(--fs-6);
+  text-transform: capitalize;
+  box-shadow: var(--shadow-2);
+  z-index: 1;
+  transition: var(--transition-1);
+}
+
+.download-cv-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+  transition: var(--transition-1);
+}
+
+.download-cv-btn:hover,
+.download-cv-btn:focus-visible {
+  background: var(--bg-gradient-yellow-1);
+  transform: translateY(-2px);
+}
+
+.download-cv-btn:hover::before,
+.download-cv-btn:focus-visible::before { background: var(--bg-gradient-yellow-2); }
+
+.download-cv-btn svg { font-size: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .download-cv-btn:hover,
+  .download-cv-btn:focus-visible { transform: none; }
+}
+
 /* Animation */
 @keyframes fade {
   0% { opacity: 0; }
@@ -623,9 +715,18 @@ body.loading {
 .social-item .social-link {
   color: var(--light-gray-70);
   font-size: 18px;
+  display: inline-flex;
+  transition: transform var(--transition-1);
 }
 
 .social-item .social-link:hover { color: var(--light-gray); }
+
+.social-item .social-link:hover { transform: translateY(-3px) scale(1.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .social-item .social-link { transition: none; }
+  .social-item .social-link:hover { transform: none; }
+}
 
 /* NAVBAR */
 .navbar {
@@ -708,6 +809,7 @@ article {
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   z-index: 1;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
 }
 
 .service-item::before {
@@ -717,10 +819,33 @@ article {
   background: var(--bg-gradient-jet);
   border-radius: inherit;
   z-index: -1;
+  transition: var(--transition-1);
 }
 
-.service-icon-box { margin-bottom: 10px; }
+.service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
+}
+
+.service-item:hover::before { background: var(--bg-gradient-yellow-2); }
+
+.service-icon-box {
+  margin-bottom: 10px;
+  transition: transform var(--transition-1);
+}
+
+.service-item:hover .service-icon-box {
+  transform: scale(1.1) rotate(-4deg);
+}
+
 .service-icon-box img { margin: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .service-item,
+  .service-icon-box { transition: none; }
+  .service-item:hover { transform: none; }
+  .service-item:hover .service-icon-box { transform: none; }
+}
 .service-content-box { text-align: center; }
 
 .service-item-title {
@@ -930,7 +1055,13 @@ article {
 .skill-progress-fill {
   background: var(--text-gradient-yellow);
   height: 100%;
+  width: 0;
   border-radius: inherit;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-progress-fill { transition: none; }
 }
 
 /* PORTFOLIO */
@@ -1612,7 +1743,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-inline: auto;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 25px;
     padding: 60px 15px;
   }
@@ -1624,13 +1755,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .sidebar {
-    position: sticky;
-    top: 60px;
-    max-height: max-content;
-    height: fit-content;
     margin-bottom: 0;
     padding: 30px 30px;
     min-width: 300px;
+    max-height: none;
+    overflow: visible;
     z-index: 1;
   }
 

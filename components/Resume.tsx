@@ -1,74 +1,45 @@
 "use client";
 
-import { IoBookOutline } from "react-icons/io5";
-import { IoBriefcaseOutline } from "react-icons/io5";
-
-const education = [
-  {
-    title: "Trinity College Dublin",
-    period: "2017 — 2021",
-    description: "Bachelor of Engineering - BE, Computer Engineering",
-  },
-  {
-    title: "Blue Bells Model School",
-    period: "2015 — 2017",
-    description: "AISSCE - Physics, Chemistry, Maths, Computer Science",
-  },
-];
-
-const experience = [
-  {
-    title: "Research Fellow",
-    company: "ADAPT Centre",
-    period: "Jul 2025 — Present",
-    description: "Conducting research in AI-driven solutions, focusing on responsible AI and scalable systems at Trinity College Dublin.",
-  },
-  {
-    title: "Senior Consultant",
-    company: "Deloitte",
-    period: "Aug 2024 — Aug 2025",
-    description: "Led full-stack .NET development, integrated AI models for document identification & fraud detection (reducing manual effort by 34%), and mentored junior developers.",
-  },
-  {
-    title: "Visiting Research Fellow",
-    company: "Trinity College Dublin",
-    period: "May 2025 — Jul 2025",
-    description: "Developed GenAI model for adaptive lesson planning, enabling 140% faster content generation. Led research on responsible AI and GDPR-compliant frameworks.",
-  },
-  {
-    title: "Consultant",
-    company: "Deloitte",
-    period: "Aug 2023 — Aug 2024",
-    description: "Focused on .NET Core, cloud development, and Azure security. Certified Azure Developer Associate.",
-  },
-  {
-    title: "Analyst",
-    company: "Deloitte",
-    period: "Sep 2021 — Aug 2023",
-    description: "Full-Stack .NET Developer delivering high-quality solutions. Implemented robust testing with NUnit and SpecFlow, managed CI/CD with Azure DevOps.",
-  },
-  {
-    title: "Software Engineer Intern",
-    company: "Fonz Music",
-    period: "Jun 2021 — Sep 2021",
-    description: "Worked with TypeScript, Node.js, and AWS to build music platform features.",
-  },
-];
-
-const skills = [
-  { name: ".NET / C#", percentage: 95 },
-  { name: "Cloud (Azure / AWS)", percentage: 90 },
-  { name: "AI / Machine Learning", percentage: 85 },
-  { name: "TypeScript / JavaScript", percentage: 90 },
-  { name: "Python", percentage: 80 },
-  { name: "DevOps / CI/CD", percentage: 85 },
-];
+import { useEffect, useRef, useState } from "react";
+import { IoBookOutline, IoBriefcaseOutline, IoDownloadOutline } from "react-icons/io5";
+import { profile } from "@/data/profile";
+import { education, experience, skills } from "@/data/resume";
 
 export default function Resume() {
+  const skillsRef = useRef<HTMLUListElement>(null);
+  const [skillsVisible, setSkillsVisible] = useState(false);
+
+  // Animate the skill bars the first time the list scrolls into view.
+  useEffect(() => {
+    const node = skillsRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSkillsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <article className="resume" data-page="resume">
-      <header>
+      <header className="resume-header">
         <h2 className="article-title">Resume</h2>
+        <a
+          href={profile.resumeUrl}
+          download
+          className="download-cv-btn"
+        >
+          <IoDownloadOutline />
+          <span>Download CV</span>
+        </a>
       </header>
 
       {/* Experience */}
@@ -115,7 +86,7 @@ export default function Resume() {
       {/* Skills */}
       <section className="skill">
         <h3 className="skills-title">My Skills</h3>
-        <ul className="skills-list content-card">
+        <ul ref={skillsRef} className="skills-list content-card">
           {skills.map((skill, index) => (
             <li key={index} className="skills-item">
               <div className="title-wrapper">
@@ -125,7 +96,7 @@ export default function Resume() {
               <div className="skill-progress-bg">
                 <div
                   className="skill-progress-fill"
-                  style={{ width: `${skill.percentage}%` }}
+                  style={{ width: skillsVisible ? `${skill.percentage}%` : "0%" }}
                 ></div>
               </div>
             </li>

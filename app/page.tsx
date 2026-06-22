@@ -25,6 +25,9 @@ export default function Home() {
       initialTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
+    // Syncing React state with an external store (localStorage / OS preference)
+    // on mount is the intended use here, so the cascading-render rule doesn't apply.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsDark(initialTheme);
     document.documentElement.setAttribute("data-theme", initialTheme ? "dark" : "light");
 

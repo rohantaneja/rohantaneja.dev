@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { IoMailOutline, IoPhonePortraitOutline, IoStarOutline, IoLocationOutline, IoChevronDown, IoLogoGithub, IoLogoLinkedin, IoLogoFacebook, IoLogoInstagram, IoLogoWhatsapp } from "react-icons/io5";
-import { FaXTwitter } from "react-icons/fa6";
+import { IoMailOutline, IoStarOutline, IoLocationOutline, IoChevronDown } from "react-icons/io5";
+import { profile } from "@/data/profile";
+import { socials } from "@/data/socials";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,17 +14,19 @@ export default function Sidebar() {
       <div className="sidebar-info">
         <figure className="avatar-box">
           <Image
-            src="/images/memoji.png"
-            alt="Rohan Taneja"
-            width={80}
-            height={80}
+            src={profile.avatar}
+            alt={profile.name}
+            width={300}
+            height={300}
+            quality={90}
+            priority
             className="rounded-[20px]"
           />
         </figure>
 
         <div className="info-content">
-          <h1 className="name">Rohan Taneja</h1>
-          <p className="title">Software Engineer</p>
+          <h1 className="name">{profile.name}</h1>
+          <p className="title">{profile.title}</p>
         </div>
 
         <button
@@ -45,20 +48,8 @@ export default function Sidebar() {
             </div>
             <div className="contact-info">
               <p className="contact-title">Email</p>
-              <a href="mailto:contact@rohantaneja.dev" className="contact-link">
-                contact@rohantaneja.dev
-              </a>
-            </div>
-          </li>
-
-          <li className="contact-item">
-            <div className="icon-box">
-              <IoPhonePortraitOutline />
-            </div>
-            <div className="contact-info">
-              <p className="contact-title">Phone</p>
-              <a href="tel:+919910434623" className="contact-link">
-                +91 99104 34623
+              <a href={`mailto:${profile.email}`} className="contact-link">
+                {profile.email}
               </a>
             </div>
           </li>
@@ -69,7 +60,7 @@ export default function Sidebar() {
             </div>
             <div className="contact-info">
               <p className="contact-title">Zodiac</p>
-              <time dateTime="1990-03-01">Pisces</time>
+              <time dateTime={profile.zodiacDate}>{profile.zodiac}</time>
             </div>
           </li>
 
@@ -79,7 +70,7 @@ export default function Sidebar() {
             </div>
             <div className="contact-info">
               <p className="contact-title">Location</p>
-              <address>Dublin, Ireland</address>
+              <address>{profile.location}</address>
             </div>
           </li>
         </ul>
@@ -87,36 +78,19 @@ export default function Sidebar() {
         <div className="separator"></div>
 
         <ul className="social-list">
-          <li className="social-item">
-            <a href="https://www.facebook.com/rohantaneja99/" className="social-link">
-              <IoLogoFacebook className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
-          <li className="social-item">
-            <a href="https://www.instagram.com/rohantaneja99/" className="social-link">
-              <IoLogoInstagram className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
-          <li className="social-item">
-            <a href="https://github.com/rohantaneja" className="social-link">
-              <IoLogoGithub className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
-          <li className="social-item">
-            <a href="https://www.linkedin.com/in/rohantaneja-dev/" className="social-link">
-              <IoLogoLinkedin className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
-          <li className="social-item">
-            <a href="https://x.com/rohantaneja99" className="social-link">
-              <FaXTwitter className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
-          <li className="social-item">
-            <a href="https://wa.me/919910434623" className="social-link">
-              <IoLogoWhatsapp className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
-            </a>
-          </li>
+          {socials.map((social) => (
+            <li key={social.label} className="social-item">
+              <a
+                href={social.url}
+                className="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+              >
+                <social.icon className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </aside>
