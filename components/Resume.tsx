@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { IoBookOutline, IoBriefcaseOutline, IoDownloadOutline } from "react-icons/io5";
 import { profile } from "@/data/profile";
 import { education, experience, skills } from "@/data/resume";
+import { trackContactIntent } from "@/lib/analytics";
 
 export default function Resume() {
   const skillsRef = useRef<HTMLUListElement>(null);
@@ -36,6 +37,7 @@ export default function Resume() {
           href={profile.resumeUrl}
           download
           className="download-cv-btn"
+          onClick={() => trackContactIntent("cv_download")}
         >
           <IoDownloadOutline />
           <span>Download CV</span>

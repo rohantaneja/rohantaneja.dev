@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "rohantaneja.dev",
-  description: "Rohan Taneja - CTO/Founding Engineer @ mesolab.ai",
+  title: "Rohan Taneja — Co-Founder & CTO, MESO Lab",
+  description: "Rohan Taneja is Co-Founder & CTO of MESO Lab, an AI planning platform for teachers built in Dublin.",
   icons: {
     icon: [
       {
@@ -15,6 +17,20 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: light)",
       },
     ],
+  },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  url: "https://rohantaneja.dev",
+  worksFor: {
+    "@type": "Organization",
+    name: profile.company.name,
+    legalName: profile.company.legalName,
+    url: profile.company.url,
   },
 };
 
@@ -42,9 +58,14 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

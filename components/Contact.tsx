@@ -2,6 +2,8 @@
 
 import { useState, FormEvent } from "react";
 import { IoPaperPlane } from "react-icons/io5";
+import { profile } from "@/data/profile";
+import { trackContactIntent } from "@/lib/analytics";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,8 +34,10 @@ export default function Contact() {
     const subject = encodeURIComponent(`Hi Rohan!`);
     const body = encodeURIComponent(formData.message);
 
+    trackContactIntent("contact_form");
+
     // Open user's email client
-    window.location.href = `mailto:contact@rohantaneja.dev?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
   };
 
   return (
