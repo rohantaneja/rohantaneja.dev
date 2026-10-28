@@ -5,7 +5,6 @@ export const profile = {
   resumeUrl: "/tanejar-resume-0626.pdf",
   email: "contact@rohantaneja.dev",
   zodiac: "Pisces",
-  zodiacDate: "1990-03-01",
   location: "Dublin, Ireland",
   company: {
     name: "MESO Lab",
