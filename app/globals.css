@@ -696,7 +696,7 @@ body.loading {
 }
 
 .contact-info .contact-link,
-.contact-info time,
+.contact-info .contact-text,
 .contact-info address {
   color: var(--white-2);
   font-size: var(--fs-7);
@@ -1790,7 +1790,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .contact-info .contact-link,
-  .contact-info time,
+  .contact-info .contact-text,
   .contact-info address {
     --fs-7: 14px;
     font-weight: var(--fw-300);

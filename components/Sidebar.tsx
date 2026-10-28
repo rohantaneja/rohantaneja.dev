@@ -83,7 +83,7 @@ export default function Sidebar() {
             </div>
             <div className="contact-info">
               <p className="contact-title">Zodiac</p>
-              <time dateTime={profile.zodiacDate}>{profile.zodiac}</time>
+              <span className="contact-text">{profile.zodiac}</span>
             </div>
           </li>
 

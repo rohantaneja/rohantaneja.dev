@@ -20,7 +20,7 @@ export const experience: TimelineItem[] = [
   {
     title: "AI Researcher (Research Fellow)",
     company: "ADAPT Centre, Trinity College Dublin",
-    period: "May 2025 — Present",
+    period: "May 2025 — Sep 2026",
     description: "Led the foundational research that became MESO, building the first LLM + RAG prototype for curriculum-aligned lesson planning. Embedded Responsible AI and GDPR-compliant data governance from the outset.",
   },
   {
