@@ -12,10 +12,10 @@ export interface Skill {
 
 export const experience: TimelineItem[] = [
   {
-    title: "Technical Founder & CTO",
-    company: "MESO AI Lab",
+    title: "Co-Founder & CTO",
+    company: "MESO Lab",
     period: "Aug 2025 — Present",
-    description: "Co-founded MESO as a Trinity College Dublin spinout and lead all engineering as CTO. Built the platform end to end — from research prototype to live deployment in public schools — shipping the first multi-agent curriculum engine and teacher-facing web app.",
+    description: "Co-founded MESO Lab as a Trinity College Dublin spinout and lead all engineering. Built the AI planning platform teachers use for curriculum-aligned unit plans, lessons, assessments and resources: multi-agent generation on Vertex AI, a React + Supabase web app, and a GDPR-first platform on Google Cloud, now piloting in schools.",
   },
   {
     title: "AI Researcher (Research Fellow)",
@@ -51,10 +51,11 @@ export const education: TimelineItem[] = [
 ];
 
 export const skills: Skill[] = [
-  { name: "AI / Machine Learning (RAG, LLMs)", percentage: 90 },
-  { name: "TypeScript / JavaScript", percentage: 90 },
-  { name: ".NET / C#", percentage: 90 },
-  { name: "Cloud (AWS / Azure)", percentage: 88 },
+  { name: "AI Systems (LLM Agents, RAG)", percentage: 92 },
+  { name: "TypeScript / React", percentage: 90 },
+  { name: "Cloud (Google Cloud / Azure / AWS)", percentage: 88 },
+  { name: "Platform (Kubernetes / CI-CD)", percentage: 88 },
   { name: "Python", percentage: 85 },
-  { name: "DevOps (Docker / Kubernetes / CI-CD)", percentage: 85 },
+  { name: "Postgres / Supabase", percentage: 85 },
+  { name: ".NET / C#", percentage: 85 },
 ];

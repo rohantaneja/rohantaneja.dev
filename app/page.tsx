@@ -8,6 +8,7 @@ import About from "@/components/About";
 import Resume from "@/components/Resume";
 import Contact from "@/components/Contact";
 import ThemeToggle from "@/components/ThemeToggle";
+import { trackSectionView } from "@/lib/analytics";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -57,9 +58,13 @@ export default function Home() {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (!isLoading) trackSectionView(activePage);
+  }, [activePage, isLoading]);
+
   // Scrolling title effect
   useEffect(() => {
-    const title = "rohantaneja - cto/founding-engineer@mesolab.ai | minimalist.geek.tinkerer - ";
+    const title = "rohantaneja - co-founder/cto@mesolab.ai | minimalist.geek.tinkerer - ";
     let position = 0;
 
     const scrollTitle = () => {

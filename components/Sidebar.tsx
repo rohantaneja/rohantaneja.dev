@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { IoMailOutline, IoStarOutline, IoLocationOutline, IoChevronDown } from "react-icons/io5";
+import { IoMailOutline, IoStarOutline, IoLocationOutline, IoChevronDown, IoBusinessOutline } from "react-icons/io5";
 import { profile } from "@/data/profile";
 import { socials } from "@/data/socials";
+import { trackContactIntent } from "@/lib/analytics";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,8 +49,30 @@ export default function Sidebar() {
             </div>
             <div className="contact-info">
               <p className="contact-title">Email</p>
-              <a href={`mailto:${profile.email}`} className="contact-link">
+              <a
+                href={`mailto:${profile.email}`}
+                className="contact-link"
+                onClick={() => trackContactIntent("email_link", "sidebar")}
+              >
                 {profile.email}
+              </a>
+            </div>
+          </li>
+
+          <li className="contact-item">
+            <div className="icon-box">
+              <IoBusinessOutline />
+            </div>
+            <div className="contact-info">
+              <p className="contact-title">Company</p>
+              <a
+                href={profile.company.url}
+                className="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactIntent("mesolab_link", "sidebar")}
+              >
+                {profile.company.name}
               </a>
             </div>
           </li>
@@ -86,6 +109,7 @@ export default function Sidebar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
+                onClick={() => trackContactIntent("social", social.label)}
               >
                 <social.icon className="text-orange-yellow-crayola text-lg hover:text-light-gray transition-colors" />
               </a>
