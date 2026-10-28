@@ -2,7 +2,7 @@ export const profile = {
   name: "Rohan Taneja",
   title: "Co-Founder & CTO",
   avatar: "/images/memoji.png",
-  resumeUrl: "/tanejar-resume-0626.pdf",
+  resumeUrl: "/tanejar-resume-1026.pdf",
   email: "contact@rohantaneja.dev",
   zodiac: "Pisces",
   location: "Dublin, Ireland",
