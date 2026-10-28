@@ -14,7 +14,7 @@ export const experience: TimelineItem[] = [
   {
     title: "Co-Founder & CTO",
     company: "MESO Lab",
-    period: "Aug 2025 — Present",
+    period: "May 2025 — Present",
     description: "Co-founded MESO Lab as a Trinity College Dublin spinout and lead all engineering. Built the AI planning platform teachers use for curriculum-aligned unit plans, lessons, assessments and resources: multi-agent generation on Vertex AI, a React + Supabase web app, and a GDPR-first platform on Google Cloud, now piloting in schools.",
   },
   {
